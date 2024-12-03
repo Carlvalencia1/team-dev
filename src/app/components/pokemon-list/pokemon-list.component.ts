@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, CommonModule],
   templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.css',
+  styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent implements OnInit {
   pokemons: Pokemon[] = [];
-  pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0'; // URL para obtener 100 Pokémon
+  pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0'; 
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -21,7 +21,6 @@ export class PokemonListComponent implements OnInit {
     this.getAllPokemons();
   }
 
-  // Obtener todos los Pokémon utilizando la paginación de la API
   getAllPokemons(): void {
     this.pokemonService.getPokemons(this.pokemonListUrl).subscribe((response) => {
       const pokemonUrls = response.results.map((result) => result.url);
