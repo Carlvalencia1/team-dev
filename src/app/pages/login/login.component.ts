@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,25 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Form Data:', this.loginForm.value);
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+
+      console.log('Email:', email);
+      console.log('Password:', password);
+      localStorage.setItem("user", JSON.stringify(this.loginForm.value))
+
+      this.router.navigate(['/home']);
     } else {
-      console.error('Invalid Form');
+      alert('Por favor, complete el formulario correctamente.');
     }
   }
 }

@@ -1,3 +1,4 @@
+
 <form class="form_container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="logo_container"></div>
     <div class="title_container">
@@ -39,24 +40,6 @@
     </div>
     <button type="submit" class="sign-in_btn" [disabled]="loginForm.invalid">
       <span>Sign In</span>
-    </button>
-    <div class="separator">
-      <hr class="line" />
-      <span>Or</span>
-      <hr class="line" />
-    </div>
-    <button type="button" class="sign-in_ggl">
-      <svg height="18" width="18" viewBox="0 0 32 32">
-        <!-- SVG PATH -->
-      </svg>
-      <span>Sign In with Google</span>
-    </button>
-    <button type="button" class="sign-in_apl">
-      <svg height="20" width="16" viewBox="0 0 256 315">
-        <!-- SVG PATH -->
-      </svg>
-      <span>Sign In with Apple</span>
-    </button>
+    </button> 
     <p class="note">Terms of use &amp; Conditions</p>
   </form>
-  
